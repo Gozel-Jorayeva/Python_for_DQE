@@ -4,17 +4,15 @@ import string
 # create empty list and call it "dictList"
 dict_list = []
 # for each iteration create random number of dictionaries (randint from random library)
-for i in range(random.randint(2,10)):
+for i in range(random.randint(2, 10)):
     # create random dictionary size and assign it to "size" variable
-    size = random.randint(2,4)
+    dict_size = random.randint(2, 4)
     # create random letters for keys (using string library's ascii_lowercase method)
-    keys = random.sample(string.ascii_lowercase,size)
-    # create random numbers from 0 to 100 assign it to "values" variable
-    values = (random.randint(0,100)
-    # for each dict which are inside of list
-    for i in range(size))
+    keys = random.sample(string.ascii_lowercase, dict_size)
+    # create random numbers from 0 to 100 assign it to "values" variable for each dict which are inside of list
+    values = (random.randint(0, 100) for k in range(dict_size))
     # convert to key-value pairs
-    dictionary = dict(zip(keys,values))
+    dictionary = dict(zip(keys, values))
     # add created dictionaries to "dict_list"
     dict_list.append(dictionary)
 
