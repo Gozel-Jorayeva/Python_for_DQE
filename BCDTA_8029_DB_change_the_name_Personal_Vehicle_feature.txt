@@ -1,0 +1,61 @@
+
+/*
+Advito DB
+Task  :   BCDTA-8029 - [DB] - change the name Personal Vehicle feature
+
+Update in advito.public.advito_application_feature
+
+
+PR: https://dev.azure.com/BCDT/Advito/_git/Advito/pullrequest/18469
+
+script have to be run on Advito DB
+*/ 
+
+
+-- create table that store test-case results
+drop table if exists BCDTA_8029_test_results;
+create temp table IF NOT EXISTS BCDTA_8029_test_results
+(order_ text, object_ text, test_type text, result_ text, comment_  text);
+
+--------------------------------------------
+With table_nm as   -- set table name to test   -- schema.name
+(select 'public.advito_application_feature' as tbl   -- (select fn_nm from fn_name)
+),
+req_data as
+(select 
+    3 as advito_application_id, 
+	'Personal Vehicle' as feature_name,
+	'360_PV' as feature_tag 
+),
+CTE_DB_table_data as 
+(select advito_application_id, feature_name, feature_tag 
+from public.advito_application_feature
+where feature_name in ('Personal Vehicle')
+),
+CTE_TEST_01 as 
+(select 'db' as type_, a2.* from
+(select * from CTE_DB_table_data
+except
+select * from req_data) a2
+union all
+select 'test' as type_, a1.* from
+(select * from req_data
+except
+select * from CTE_DB_table_data) a1
+
+)
+insert into BCDTA_8029_test_results
+(order_ , object_ , test_type , result_ , comment_  )
+select '1' as order_ ,(select tbl from table_nm) as object_,'check public.advito_application_feature' as test_type
+,case when (select coalesce(count(*),0) from CTE_TEST_01)=0 then 'Passed' else 'Failed' end as result_,
+ case when (select coalesce(count(*),0) from CTE_TEST_01)<>0 then 'settings setup incorrect' else '' end 
+       as comment_;
+ 
+   
+--------------------
+-- show test results
+select * from BCDTA_8029_test_results 
+order by order_ asc;
+
+
+
