@@ -4,8 +4,8 @@
 
 import sys
 import os
-from modul_hometask5 import News, PrivateAd, Joke
-from homework4_try2 import normalize_letter_cases
+from hw_5 import News, PrivateAd, Joke
+from hw_4 import normalize_letter_cases
 import re
 
 
