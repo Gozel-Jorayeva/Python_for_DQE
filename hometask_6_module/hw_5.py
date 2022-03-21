@@ -24,6 +24,7 @@ class Publication:
     def SaveDataIntoFile(self, file_name="Publication.txt"):
         with open(file_name, "a") as file:     # w or a
         # with open(r"C:\Users\Gozel_Jorayeva\PycharmProjects\pythonProject\test1\Publication.txt", "a") as file:     # w or a
+        
 class News(Publication):
     def __init__(self):
         super().__init__()
