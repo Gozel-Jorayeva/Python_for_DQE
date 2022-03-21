@@ -1,8 +1,10 @@
 from datetime import datetime
 
 class Publication:
-    def __init__(self):
+    def __init__(self, from_file=False):
         self.publication_text = " "
+        self.from_file = from_file
+
 
     def InputData(self):
         publication_type = int(input("1-News\n2-Private Ad\n3-Joke\nChoose the publication type and click Enter: "))
@@ -15,19 +17,33 @@ class Publication:
         else:
             print("Please retry")
 
-    def SaveDataIntoFile(self):
-        with open(r"C:\Users\Gozel_Jorayeva\PycharmProjects\pythonProject\test1\Publication.txt", "a") as file:     # w or a
-            file.write(self.publication_text)
+#     def SaveDataIntoFile(self):
+#         with open(r"C:\Users\Gozel_Jorayeva\PycharmProjects\pythonProject\test1\Publication.txt", "a") as file:     # w or a
+#             file.write(self.publication_text)
 
+    def SaveDataIntoFile(self, file_name="Publication.txt"):
+        with open(file_name, "a") as file:     # w or a
+        # with open(r"C:\Users\Gozel_Jorayeva\PycharmProjects\pythonProject\test1\Publication.txt", "a") as file:     # w or a
 class News(Publication):
     def __init__(self):
         super().__init__()
-        self.text = input("Input the publication text: ")
-        self.location = input("Input the location text: ")
+        if self.from_file == False:
+            self.text = input("Input the publication text: ")
+            self.location = input("Input the location text: ")
         self.pub_type = "News -------------------------" + "\n"
         self.dash = "-------------------------" + "\n"
         current_day = datetime.now()
-        self.publication_text = "\n" + self.pub_type + self.text + "\n" + self.location + "\n" + current_day.strftime("%d/%m/%Y, %H.%M" + "\n" + self.dash + "\n")
+        self.publication_text = "\n" + self.pub_type + self.text + "\n" + self.location + "\n" + current_day.strftime("%d/%m/%Y, %H.%M" + "\n" + self.dash + "\n")file.write(self.publication_text)
+
+# class News(Publication):
+#     def __init__(self):
+#         super().__init__()
+#         self.text = input("Input the publication text: ")
+#         self.location = input("Input the location text: ")
+#         self.pub_type = "News -------------------------" + "\n"
+#         self.dash = "-------------------------" + "\n"
+#         current_day = datetime.now()
+#         self.publication_text = "\n" + self.pub_type + self.text + "\n" + self.location + "\n" + current_day.strftime("%d/%m/%Y, %H.%M" + "\n" + self.dash + "\n")
 
 
 class PrivateAd(Publication):
