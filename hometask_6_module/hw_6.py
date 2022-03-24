@@ -43,12 +43,32 @@ class Options:
             print("File was not found!")
             sys.exit()
 
-    def write_data(self):
-        with open("news_feed.txt", "a") as file:
-            for i in self.text_from_file:
-                ii = normalize_letter_cases(i)
-                file.write(ii + "\n\n")
-            os.remove(self.source_file_path)
+            
+     def check_data(self):
+        with open(self.file_name, "r") as r_file:
+            content = r_file.readlines()
+            for i in range(0, len(content)):
+                if content[i] == "News":
+                    a = News(False)
+                    a.text = content[i + 1]
+                    a.location = content[i + 2]
+                    a.SaveDataIntoFile("news_feed.txt")
+                elif content[i] == "Private Ad":
+                    b = PrivateAd()
+                    b.text = content[i + 1]
+                    b.end_date = content[i + 2]
+                    b.SaveDataIntoFile("news_feed.txt")
+                elif content[i] == "Joke":
+                    c = Joke()
+                    c.text = content[i + 1]
+                    c.SaveDataIntoFile("news_feed.txt")           
+            
+#     def write_data(self):
+#         with open("news_feed.txt", "a") as file:
+#             for i in self.text_from_file:
+#                 ii = normalize_letter_cases(i)
+#                 file.write(ii + "\n\n")
+#             os.remove(self.source_file_path)
 
 
 try:
@@ -56,6 +76,7 @@ try:
         options = Options()
         if options.input_format == 2:
             options.read_data()
-            options.write_data()
+            options.check_data()
+#             options.write_data()
 except KeyboardInterrupt:
     pass
