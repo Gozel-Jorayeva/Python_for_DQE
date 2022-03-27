@@ -1,0 +1,15 @@
+[{
+  "publication": "News",
+  "news_text": "Something happened.",
+  "city": "London"
+},
+  {
+  "publication": "Private ad",
+  "ad_text": "What to sell this car.",
+  "end_date": "15/04/2022"
+},
+  {
+  "publication": "Joke",
+  "joke_text": "It's Joke"
+}
+]
