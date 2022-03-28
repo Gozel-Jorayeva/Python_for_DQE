@@ -1,0 +1,11 @@
+<input_data>
+  <publication>
+    <type text="Something happened in xml." city = "London">News</type>
+  </publication>
+  <publication>
+    <type text="It's ad about xml." end_date="15/03/2022">Private Ad</type>
+  </publication>
+  <publication>
+    <type text="This xml joke is not funny.">Joke</type>
+   </publication>
+</input_data>
