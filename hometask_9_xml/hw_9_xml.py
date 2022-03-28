@@ -5,6 +5,7 @@ import json
 from hw5_classes import News, PrivateAd, Joke
 from datetime import datetime
 import xml.etree.ElementTree as Et
+import os
 
 check_uploaded_file_data = "Publication.txt"
 
@@ -128,6 +129,7 @@ class Options:
 
                 with open(check_uploaded_file_data, "a") as file:
                     file.write(self.publish)
+        os.remove("test.xml")
 
 
 try:
