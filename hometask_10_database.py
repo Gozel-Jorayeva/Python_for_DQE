@@ -57,9 +57,9 @@ class Publication:
                 self.cursor.execute("DROP TABLE IF EXISTS ad")
                 self.cursor.execute("DROP TABLE IF EXISTS joke")
                 # id INTEGER PRIMARY KEY AUTOINCREMENT,
-                self.cursor.execute("CREATE TABLE IF NOT EXISTS news (type varchar, text varchar (255), city varchar, current_date varchar)")
-                self.cursor.execute("CREATE TABLE IF NOT EXISTS ad (type varchar, text varchar, end_date varchar, left_days varchar)")
-                self.cursor.execute("CREATE TABLE IF NOT EXISTS joke (type varchar, text varchar)")
+                self.cursor.execute("CREATE TABLE IF NOT EXISTS news (type varchar, text varchar (255) UNIQUE, city varchar, current_date varchar)")
+                self.cursor.execute("CREATE TABLE IF NOT EXISTS ad (type varchar, text varchar (255) UNIQUE, end_date varchar, left_days varchar)")
+                self.cursor.execute("CREATE TABLE IF NOT EXISTS joke (type varchar, text varchar (255) UNIQUE)")
 
 
     def insert_to_table(self):
